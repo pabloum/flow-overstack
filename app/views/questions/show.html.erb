@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-sm-10 offset-1">
       <h1><%=@question.title%></h1>
-      <p><%=@question.description%></p>
+      <% renderer = Redcarpet::Render::HTML.new %>
+      <% markdown = Redcarpet::Markdown.new(renderer, extensions = {}) %>
+      <p><%= markdown.render(@question.description).html_safe%></p>
       <h2>Votes</h2>
 
       <h2>Comments</h2>
