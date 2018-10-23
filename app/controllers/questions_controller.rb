@@ -33,6 +33,15 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    # Question.find(params[:id]).votes.destroy_all
+    # Question.find(params[:id]).comments.destroy_all
+    question = Question.find(params[:id])
+    question.destroy
+
+    redirect_to questions_path, notice: "Question succesfully deleted"
+  end
+
   private
     def question_params
       params.require(:question).permit(:title, :description)

@@ -20,7 +20,7 @@
             <td> <%=question.description%></td>
             <th>
               <%= link_to "Edit &#9998;".html_safe, edit_question_path(question) %>
-              <%= link_to "Delete &#128465;".html_safe, root_path %>
+              <%= link_to "Delete &#128465;".html_safe, question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %>
             </th>
           </tr>
         <%end%>
