@@ -5,9 +5,27 @@
       <% renderer = Redcarpet::Render::HTML.new %>
       <% markdown = Redcarpet::Markdown.new(renderer, extensions = {}) %>
       <p><%= markdown.render(@question.description).html_safe%></p>
-      <h2>Votes</h2>
+      <h4>Votes</h4>
 
-      <h2>Comments</h2>
+      <h4>Comments</h4>
+
+      <h1>Answers</h1>
+
+      <ol>
+        <% @question.answers.each do |answer|%>
+          <li> <%= markdown.render(answer.content).html_safe %> </li>
+        <% end %>
+      </ol>
+
+      <%= form_for [@question, @question.answers.build] do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: "form-control", placeholder: "Answer this question" %>
+        </div>
+
+        <div class="actions text-right">
+          <%= f.submit "Answer", class: "btn btn-success" %>
+        </div>
+      <% end %>
 
       <%= link_to "← Go home", root_path, class: "btn btn-outline-success" %>
     </div>
