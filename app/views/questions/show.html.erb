@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-1">
+      <h1><%=@question.title%></h1>
+      <p><%=@question.description%></p>
+      <h2>Votes</h2>
+
+      <h2>Comments</h2>
+
+      <%= link_to "← Go home", root_path, class: "btn btn-outline-success" %>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,23 @@
         <%= link_to "Ask a question", new_question_path, class: "btn btn-success" %>
       </div>
 
-      
+      <table class="table">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+        <% @questions.each do |question|%>
+          <tr>
+            <td> <%= link_to question.title, question %></td>
+            <td> <%=question.description%></td>
+            <th>
+              <%= link_to "Edit &#9998;".html_safe, edit_question_path(question) %>
+              <%= link_to "Delete &#128465;".html_safe, root_path %>
+            </th>
+          </tr>
+        <%end%>
+      </table>
 
     </div>
   </div>
