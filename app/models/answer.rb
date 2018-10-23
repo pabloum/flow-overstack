@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: questions
+# Table name: answers
 #
 #  id          :integer          not null, primary key
+#  question_id :integer
+#  content     :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  title       :string
-#  description :text
 #
 
-class Question < ApplicationRecord
-  has_many :answers
+class Answer < ApplicationRecord
+  belongs_to :question
 end
