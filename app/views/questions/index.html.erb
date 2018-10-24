@@ -1,12 +1,13 @@
-
 <div class="container">
   <div class="row">
     <div class="col">
       <h1>Questions</h1>
 
-      <div class="text-right">
-        <%= link_to "Ask a question", new_question_path, class: "btn btn-success" %>
-      </div>
+      <% if signed_in? %>
+        <div class="text-right">
+          <%= link_to "Ask a question", new_question_path, class: "btn btn-success" %>
+        </div>
+      <% end %>
 
       <table class="table">
         <tr>
@@ -18,10 +19,12 @@
           <tr>
             <td> <%= link_to question.title, question %></td>
             <td> <%=question.description%></td>
-            <th>
-              <%= link_to "Edit &#9998;".html_safe, edit_question_path(question) %>
-              <%= link_to "Delete &#128465;".html_safe, question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %>
-            </th>
+            <td>
+              <% if signed_in? %>
+                <%= link_to "Edit &#9998;".html_safe, edit_question_path(question) %>
+                <%= link_to "Delete &#128465;".html_safe, question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %>
+              <% end %>
+            </td>
           </tr>
         <%end%>
       </table>
