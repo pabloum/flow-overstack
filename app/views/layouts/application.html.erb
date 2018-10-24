@@ -38,7 +38,7 @@
     </nav>
 
     <% if signed_in? %>
-      <div>Hola <%= current_user.name %></div>
+      <div>Hola <%= current_user.name %>, <%= link_to "Salir", logout_path, method: :delete %></div>
     <% end %>
 
     <%= yield %>
