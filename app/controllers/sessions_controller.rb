@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to root_path
     else
+      @error = "Your email and and/or password are incorrect. Try again"
       render :new
     end
   end

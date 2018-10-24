@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :private_access, except: [:index, :show]
-  
+
   def index
     @questions = Question.all
   end
@@ -10,8 +10,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.new(question_params)
-    if question.save
+    @question = Question.new(question_params)
+    if @question.save
       redirect_to questions_path, notice: "The question was succesfully saved"
     else
       render :new
@@ -27,8 +27,8 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    question = Question.find(params[:id])
-    if question.update(question_params)
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
       redirect_to questions_path, notice: "The question was succesfully edited"
     else
       render :new

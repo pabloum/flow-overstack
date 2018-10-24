@@ -4,6 +4,16 @@
 
       <h1><%= title %></h1>
 
+      <% if @question.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+          <% @question.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <%= form_for @question do |q|%>
       <div class="form-group">
         <%= q.text_field :title, placeholder: "Enter the title of the question", class: "form-control input-lg"%>
