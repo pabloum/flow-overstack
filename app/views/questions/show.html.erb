@@ -2,24 +2,70 @@
   <div class="row">
     <div class="col-sm-10 offset-1">
       <h1><%=@question.title%></h1>
-      <% renderer = Redcarpet::Render::HTML.new %>
-      <% markdown = Redcarpet::Markdown.new(renderer, extensions = {}) %>
+
+      <h4>Description:</h4>
       <div class="question-description">
+        <% renderer = Redcarpet::Render::HTML.new %>
+        <% markdown = Redcarpet::Markdown.new(renderer, extensions = {}) %>
         <%= markdown.render(@question.description).html_safe%>
       </div>
-      <!-- <h4>Votes</h4> -->
       <h4>Comments</h4>
+      <% @question.comments.each do |comment| %>
+        <div class="card bg-light">
+          <div class="card-header"><img src="<%= Gravatar.new("#{comment.user.email}").image_url %>" class="rounded-circle comment-photo" /> <%= comment.user.name %></div>
+          <div class="card-body"><%= comment.text %></div>
+        </div>
+      <% end %>
+
+      <% if signed_in? %>
+        <br>
+        <%= form_for [@question, @question.comments.build] do |f| %>
+          <%= f.hidden_field :commentable_id %>
+          <%= f.hidden_field :commentable_type %>
+          <div class="form-group">
+            <%= f.text_area :text, class: "form-control", placeholder: "Add comment" %>
+          </div>
+
+          <div class="actions text-right">
+            <%= f.submit "Comment", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      <% end %>
 
       <hr>
       <h1>Answers</h1>
 
-      <ol>
+
+      <ol class="list-group">
         <% @question.answers.each do |answer|%>
-          <li> <%= markdown.render(answer.content).html_safe %> </li>
+          <li class="list-group-item">
+            <%= markdown.render(answer.content).html_safe %>
+            <% answer.comments.each do |comment| %>
+              <div class="card bg-light">
+                <div class="card-header"><img src="<%= Gravatar.new("#{comment.user.email}").image_url %>" class="rounded-circle comment-photo" /> <%= comment.user.name %></div>
+                <div class="card-body"><%= comment.text %></div>
+              </div>
+            <% end %>
+
+            <% if signed_in? %>
+              <br>
+              <%= form_for [@question, answer.comments.build] do |f| %>
+                <%= f.hidden_field :commentable_id %>
+                <%= f.hidden_field :commentable_type %>
+                <div class="form-group">
+                  <%= f.text_area :text, class: "form-control", placeholder: "Add comment" %>
+                </div>
+                <div class="actions text-right">
+                  <%= f.submit "Comment this answer", class: "btn btn-success" %>
+                </div>
+              <% end %>
+            <% end %>
+          </li>
         <% end %>
       </ol>
 
       <% if signed_in? %>
+        <br>
         <%= form_for [@question, @question.answers.build] do |f| %>
           <div class="form-group">
             <%= f.text_area :content, class: "form-control", placeholder: "Answer this question" %>

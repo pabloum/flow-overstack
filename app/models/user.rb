@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   has_many :questions
+  has_many :answers
+  has_many :comments, as: :commentable
 
   validates :name, presence: true
   validates :email, uniqueness: true, format: /@/

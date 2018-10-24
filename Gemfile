@@ -30,6 +30,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.1'
 gem 'jquery-rails'
 
+gem 'gravatar-ultimate'
+gem 'xmlrpc'
+
 gem 'annotate'
 
 gem 'redcarpet'

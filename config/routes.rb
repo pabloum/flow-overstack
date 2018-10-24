@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resources :questions do
-    resources :answers, only: [:create]
+    resources :comments, only: [:create]
+    resources :answers, only: [:create] do
+      resources :comments, only: [:create]  
+    end
   end
 
   get 'answers/create'
