@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :private_access
-  
+
   def create
     question = Question.find(params[:question_id])
     question.answers.create(answers_params)
@@ -10,6 +10,6 @@ class AnswersController < ApplicationController
 
   private
     def answers_params
-      params.require(:answer).permit(:content)
+      params.require(:answer).permit(:content).merge(user: current_user)
     end
 end
