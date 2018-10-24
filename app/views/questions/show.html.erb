@@ -4,11 +4,13 @@
       <h1><%=@question.title%></h1>
       <% renderer = Redcarpet::Render::HTML.new %>
       <% markdown = Redcarpet::Markdown.new(renderer, extensions = {}) %>
-      <p><%= markdown.render(@question.description).html_safe%></p>
-      <h4>Votes</h4>
-
+      <div class="question-description">
+        <%= markdown.render(@question.description).html_safe%>
+      </div>
+      <!-- <h4>Votes</h4> -->
       <h4>Comments</h4>
 
+      <hr>
       <h1>Answers</h1>
 
       <ol>
