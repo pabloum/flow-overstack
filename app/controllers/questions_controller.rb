@@ -38,7 +38,8 @@ class QuestionsController < ApplicationController
 
   def destroy
     # Question.find(params[:id]).votes.destroy_all
-    # Question.find(params[:id]).comments.destroy_all
+    Question.find(params[:id]).comments.destroy_all
+    Question.find(params[:id]).answers.destroy_all
     question = Question.find(params[:id])
     question.destroy
 

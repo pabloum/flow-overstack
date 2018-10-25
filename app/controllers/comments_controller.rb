@@ -4,7 +4,12 @@ class CommentsController < ApplicationController
     comment.user = current_user
     comment.save
 
-    redirect_to Question.find(comment.commentable_id)
+    if comment.commentable_type == "Question"
+      redirect_to Question.find(comment.commentable.id)
+    else
+      redirect_to Question.find(comment.commentable.question_id)
+    end
+
   end
 
   private
