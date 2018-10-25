@@ -49,7 +49,7 @@
         <% @question.answers.each do |answer|%>
           <% i = i + 1 %>
           <li class="list-group-item">
-            <%= "#{i}. By #{answer.user.name}: " %>
+            <%= markdown.render("#{i}. By **#{answer.user.name}**: ").html_safe %>
             <hr>
             <%= markdown.render(answer.content).html_safe %>
               <div>
