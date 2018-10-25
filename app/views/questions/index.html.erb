@@ -11,12 +11,29 @@
 
       <table class="table">
         <tr>
+          <th></th>
           <th>Title</th>
           <th>Description</th>
           <th></th>
         </tr>
         <% @questions.each do |question|%>
           <tr>
+
+
+            <td>
+              <% if question.voted_by? current_user %>
+                <% vote = question.votes.where(user: current_user) %>
+                <%= link_to "#{question.votes.count} ^", question_votes_path(:id => vote.ids, :question_id => question),method: :delete, class: "upvote-count btn btn-success" %>
+              <% else %>
+                <%= form_for [question, question.votes.build] do |f| %>
+                  <%= f.hidden_field :votable_id %>
+                  <%= f.hidden_field :votable_type %>
+                  <%= f.submit "#{question.votes.count} ^", class: "btn btn-success" %>
+                <% end %>
+              <% end %>
+            </td>
+
+
             <td> <%= link_to question.title, question %></td>
             <td> <%=question.description%></td>
             <td>
