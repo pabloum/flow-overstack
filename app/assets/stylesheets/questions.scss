@@ -52,6 +52,7 @@ h4 {
         background-color: inherit;
         cursor: pointer;
         padding: 0;
+        font-size: 25px;
       }
     }
 
@@ -75,11 +76,9 @@ h4 {
       .btn {
         cursor: default;
       }
-    }
-
-    .icon {
-      font-size: 25px;
-      // margin-left: 25px;
+      .icon {
+        font-size: 25px;
+      }
     }
   }
 }

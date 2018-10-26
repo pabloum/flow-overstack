@@ -6,10 +6,20 @@
   border: solid green 5px;
   padding: 20px;
   margin: 30px auto 30px;
-  
+
   &:hover{ background: #ccffcc; }
 }
 
 .list-group-item {
   &:hover{ background: #ccffcc; }
+}
+
+.icon {
+  text-decoration: none;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  padding: 0;
+  font-size: 25px;
+  &:hover{ text-decoration: none;}
 }
