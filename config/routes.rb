@@ -9,8 +9,10 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :comments, only: [:create]
+    resource :votes, only: [:create, :destroy]
     resources :answers, only: [:create] do
-      resources :comments, only: [:create]  
+      resources :comments, only: [:create]
+      resource :votes, only: [:create, :destroy]
     end
   end
 

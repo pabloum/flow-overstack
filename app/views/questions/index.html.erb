@@ -9,26 +9,41 @@
         </div>
       <% end %>
 
-      <table class="table">
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th></th>
-        </tr>
-        <% @questions.each do |question|%>
-          <tr>
-            <td> <%= link_to question.title, question %></td>
-            <td> <%=question.description%></td>
-            <td>
-              <% if signed_in? %>
-                <%= link_to "Edit &#9998;".html_safe, edit_question_path(question) %>
-                <%= link_to "Delete &#128465;".html_safe, question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %>
-              <% end %>
-            </td>
-          </tr>
-        <%end%>
-      </table>
-
+      <div class="questions">
+        <% @questions.each do |question| %>
+        <div class="question">
+          <div class="row">
+            <div class="col-sm-1">
+              <div class="question-votes">
+                <div class="btn btn-success"><%= question.votes.count %></div>
+                <% if question.voted_by? current_user %>
+                  <% vote = question.votes.where(user: current_user) %>
+                  <%= link_to "&#128077;".html_safe, question_votes_path(:id => vote.ids, :question_id => question),method: :delete, class: "icon" %>
+                <% else %>
+                  <%= form_for [question, question.votes.build] do |f| %>
+                    <%= f.hidden_field :votable_id %>
+                    <%= f.hidden_field :votable_type %>
+                    <%= f.submit "&#128077;".html_safe, class: "icon" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="question-answers">
+                <div class="row btn btn-success"><%= question.answers.count %></div>
+                <div class="row icon">&#128488;</div>
+              </div>
+            </div>
+            <div class="col-sm-10">
+              <div class="question-details">
+                <div class="question-title"><%= link_to question.title, question %></div>
+                <span class="question-author">By: <%=question.user.name%>. Published on: <%= question.created_at%></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
