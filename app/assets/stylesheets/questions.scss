@@ -27,3 +27,59 @@ h4 {
 .list-group {
   border-width: thick;
 }
+
+.questions {
+  margin-top: 40px;
+
+  .question {
+    border: solid #66ff66 4px;
+    border-radius: 5%;
+    margin: 10px auto 10px;
+    padding: 8px;
+
+    &:hover{ background: #ccffcc; }
+
+    .question-votes {
+      margin-left: 25px;
+      display: inline;
+      .btn {
+        cursor: default;
+      }
+      .icon {
+        margin-left: 25px;
+        text-decoration: none;
+        border: none;
+        background-color: inherit;
+        cursor: pointer;
+        padding: 0;
+      }
+    }
+
+    .question-details {
+      display: inline;
+      text-align: left;
+      position: absolute;
+      top: 30%;
+
+      a {
+        color: #2eb82e;
+        font-weight: bold;
+      }
+    }
+
+    .question-answers {
+      display: inline;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      .btn {
+        cursor: default;
+      }
+    }
+
+    .icon {
+      font-size: 25px;
+      // margin-left: 25px;
+    }
+  }
+}
