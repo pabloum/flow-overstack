@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     vote.save
 
     if vote.votable_type == "Question"
-      redirect_to root_path #Question.find(vote.votable.id)
+      redirect_back(fallback_location: root_path)
     else
       redirect_to Question.find(vote.votable.question_id)
     end
@@ -20,7 +20,7 @@ class VotesController < ApplicationController
     end
 
     if @vote.votable_type == "Question"
-      redirect_to root_path #Question.find(vote.votable.id)
+      redirect_back(fallback_location: root_path)
     else
       redirect_to Question.find(vote.votable.question_id)
     end
