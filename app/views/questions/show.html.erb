@@ -83,12 +83,12 @@
               <div class="row">
                 <div class="col-sm-1">
                   <div class="question-votes">
-                    <div class="btn btn-success"><%= @question.votes.count %></div>
-                    <% if @question.voted_by? current_user %>
-                      <% vote = @question.votes.where(user: current_user) %>
+                    <div class="btn btn-success"><%= answer.votes.count %></div>
+                    <% if answer.voted_by? current_user %>
+                      <% vote = answer.votes.where(user: current_user) %>
                       <div><%= link_to "&#128077;".html_safe, question_votes_path(:id => vote.ids, :question_id => @question),method: :delete, class: "icon" %></div>
                     <% else %>
-                      <%= form_for [@question, @question.votes.build] do |f| %>
+                      <%= form_for [@question, answer.votes.build] do |f| %>
                         <%= f.hidden_field :votable_id %>
                         <%= f.hidden_field :votable_type %>
                         <%= f.submit "&#128077;".html_safe, class: "icon" %>
