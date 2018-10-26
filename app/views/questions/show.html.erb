@@ -44,6 +44,19 @@
         </div>
         <div class="comments">
           <h4>Comments</h4>
+
+
+          <% if @error_comment %>
+            <div class="alert alert-danger">
+              <ul>
+                <li><%= @error_comment %></li>
+              </ul>
+            </div>
+          <% end %>
+
+
+
+
           <% @question.comments.each do |comment| %>
             <div class="card bg-light">
               <div class="card-header"><img src="<%= Gravatar.new("#{comment.user.email}").image_url %>" class="rounded-circle comment-photo" /> <%= comment.user.name %></div>
@@ -111,6 +124,20 @@
                     </div>
                     <div class="comments">
                       <h4>Comments</h4>
+
+
+
+                      <% if @error_comment %>
+                        <div class="alert alert-danger">
+                          <ul>
+                            <li><%= @error_comment %></li>
+                          </ul>
+                        </div>
+                      <% end %>
+
+
+
+
                       <% answer.comments.each do |comment| %>
                       <div class="card bg-light">
                         <div class="card-header"><img src="<%= Gravatar.new("#{comment.user.email}").image_url %>" class="rounded-circle comment-photo" /> <%= comment.user.name %></div>
@@ -145,10 +172,10 @@
       <div id="ans-box">
 
 
-        <% if @error %>
+        <% if @error_ans %>
           <div class="alert alert-danger">
             <ul>
-              <li><%= @error %></li>
+              <li><%= @error_ans %></li>
             </ul>
           </div>
         <% end %>

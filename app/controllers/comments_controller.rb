@@ -2,13 +2,18 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(comments_params)
     comment.user = current_user
-    comment.save
+
+    @question = nil
 
     if comment.commentable_type == "Question"
-      redirect_to Question.find(comment.commentable.id)
+      @question = Question.find(comment.commentable.id)
     else
-      redirect_to Question.find(comment.commentable.question_id)
+      @question = Question.find(comment.commentable.question_id)
     end
+
+    @error_comment = "Comment can't be blank" unless comment.save
+
+    render 'questions/show'
 
   end
 
