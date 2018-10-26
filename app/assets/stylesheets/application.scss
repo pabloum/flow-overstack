@@ -4,3 +4,10 @@
 @import "comments";
 @import "answers";
 @import "votes";
+
+.navbar {
+  .navbar-brand {
+    font-weight: bold;
+    color: #00b33c;
+  }
+}
