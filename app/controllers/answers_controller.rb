@@ -7,10 +7,9 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to @question
     else
-      @error_ans = "Answer can't be blank"
-      render 'questions/show'
+      redirect_to controller: 'questions', action: 'show', id: params[:question_id], error_ans: "Answer can't be blank"
+      # redirect_to @question, error: "Answer can't be blank"
     end
-
   end
 
   private

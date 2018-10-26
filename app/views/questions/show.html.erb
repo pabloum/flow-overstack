@@ -67,6 +67,13 @@
           <% if signed_in? %>
             <br>
             <h4>Comment this question: </h4>
+            <% if params[:error_comment] %>
+              <div class="alert alert-danger">
+                <ul>
+                  <li><%= params[:error_comment] %></li>
+                </ul>
+              </div>
+            <% end %>
             <%= form_for [@question, @question.comments.build] do |f| %>
               <%= f.hidden_field :commentable_id %>
               <%= f.hidden_field :commentable_type %>
@@ -148,6 +155,13 @@
                       <% if signed_in? %>
                       <br>
                       <h4>Comment this answer:</h4>
+                      <% if params[:error_comment] %>
+                        <div class="alert alert-danger">
+                          <ul>
+                            <li><%= params[:error_comment] %></li>
+                          </ul>
+                        </div>
+                      <% end %>
                       <%= form_for [@question, answer.comments.build] do |f| %>
                         <%= f.hidden_field :commentable_id %>
                         <%= f.hidden_field :commentable_type %>
@@ -170,17 +184,13 @@
       <% if signed_in? %>
       <br>
       <div id="ans-box">
-
-
-        <% if @error_ans %>
+        <% if params[:error_ans] %>
           <div class="alert alert-danger">
             <ul>
-              <li><%= @error_ans %></li>
+              <li><%= params[:error_ans] %></li>
             </ul>
           </div>
         <% end %>
-
-
         <h4>Enter your answer here ↓</h4>
         <%= form_for [@question, @question.answers.build] do |f| %>
         <div class="form-group">

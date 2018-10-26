@@ -11,9 +11,11 @@ class CommentsController < ApplicationController
       @question = Question.find(comment.commentable.question_id)
     end
 
-    @error_comment = "Comment can't be blank" unless comment.save
-
-    render 'questions/show'
+    if comment.save
+      redirect_to @question
+    else
+      redirect_to controller: 'questions', action: 'show', id: @question.id, error_comment: "Comment can't be blank"
+    end
 
   end
 
