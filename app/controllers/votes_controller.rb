@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  before_action :private_access
 
   def create
     vote = Vote.new(votes_params)

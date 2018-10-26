@@ -41,7 +41,7 @@
                 <% if signed_in? && question.user == current_user %>
                  <span><%= link_to "Edit &#9998;".html_safe, edit_question_path(question) %></span>
                  <span><%= link_to "Delete &#128465;".html_safe, question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %></span>
-               <% end %>
+                <% end %>
               </div>
             </div>
           </div>
