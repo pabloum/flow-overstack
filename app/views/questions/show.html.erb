@@ -23,7 +23,7 @@
     <div class="col-sm-9">
 
       <h1><%=@question.title%></h1>
-      <% if signed_in? %>
+      <% if signed_in? && @question.user == current_user %>
         <div class="link-show">
           <span><%= link_to "Edit &#9998;".html_safe, edit_question_path(@question) %></span>
           <span><%= link_to "Delete &#128465;".html_safe, @question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %></span>

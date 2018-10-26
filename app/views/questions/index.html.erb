@@ -38,7 +38,7 @@
               <div class="question-details">
                 <div class="question-title"><%= link_to question.title, question %></div>
                 <div class="question-author">By: <%=question.user.name%>. Published on: <%= question.created_at%></div>
-                <% if signed_in? %>
+                <% if signed_in? && question.user == current_user %>
                  <span><%= link_to "Edit &#9998;".html_safe, edit_question_path(question) %></span>
                  <span><%= link_to "Delete &#128465;".html_safe, question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %></span>
                <% end %>

@@ -25,6 +25,9 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params[:id])
+    if @question.user != current_user
+      redirect_to :login
+    end
   end
 
   def update
