@@ -24,6 +24,12 @@
 
       <h1><%=@question.title%></h1>
       <small>By:<%=@question.user.name%>. Published on: <%=@question.created_at%></small>
+      <% if signed_in? %>
+        <div class="">
+          <span><%= link_to "Edit &#9998;".html_safe, edit_question_path(@question) %></span>
+          <span><%= link_to "Delete &#128465;".html_safe, @question,method: :delete, data: { confirm: "Are you sure to delete this question?" } %></span>
+        </div>
+      <% end %>
 
       <h4>Description:</h4>
       <div class="question-description">
