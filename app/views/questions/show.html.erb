@@ -7,11 +7,12 @@
   <div class="row">
     <div class="col-sm-1 offset-1">
       <div class="question-votes">
-        <div class="btn btn-success"><%= @question.votes.count %></div>
         <% if @question.voted_by? current_user %>
+          <div class="btn btn-success"><%= @question.votes.count %></div>
           <% vote = @question.votes.where(user: current_user) %>
           <div><%= link_to "&#128077;".html_safe, question_votes_path(:id => vote.ids, :question_id => @question),method: :delete, class: "icon" %></div>
         <% else %>
+          <div class="btn btn-secondary"><%= @question.votes.count %></div>
           <%= form_for [@question, @question.votes.build] do |f| %>
             <%= f.hidden_field :votable_id %>
             <%= f.hidden_field :votable_type %>
@@ -83,11 +84,12 @@
               <div class="row">
                 <div class="col-sm-1">
                   <div class="question-votes">
-                    <div class="btn btn-success"><%= answer.votes.count %></div>
                     <% if answer.voted_by? current_user %>
+                      <div class="btn btn-success"><%= answer.votes.count %></div>
                       <% vote = answer.votes.where(user: current_user) %>
                       <div><%= link_to "&#128077;".html_safe, question_votes_path(:id => vote.ids, :question_id => @question),method: :delete, class: "icon" %></div>
                     <% else %>
+                      <div class="btn btn-secondary"><%= answer.votes.count %></div>
                       <%= form_for [@question, answer.votes.build] do |f| %>
                         <%= f.hidden_field :votable_id %>
                         <%= f.hidden_field :votable_type %>

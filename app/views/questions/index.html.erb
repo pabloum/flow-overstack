@@ -15,11 +15,12 @@
           <div class="row">
             <div class="col-sm-1">
               <div class="question-votes">
-                <div class="btn btn-success"><%= question.votes.count %></div>
                 <% if question.voted_by? current_user %>
+                  <div class="btn btn-success"><%= question.votes.count %></div>
                   <% vote = question.votes.where(user: current_user) %>
                   <%= link_to "&#128077;".html_safe, question_votes_path(:id => vote.ids, :question_id => question),method: :delete, class: "icon" %>
                 <% else %>
+                  <div class="btn btn-secondary"><%= question.votes.count %></div>
                   <%= form_for [question, question.votes.build] do |f| %>
                     <%= f.hidden_field :votable_id %>
                     <%= f.hidden_field :votable_type %>
