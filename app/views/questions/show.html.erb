@@ -26,6 +26,7 @@
 
           <% if signed_in? %>
             <br>
+            <h4>Comment this question: </h4>
             <%= form_for [@question, @question.comments.build] do |f| %>
               <%= f.hidden_field :commentable_id %>
               <%= f.hidden_field :commentable_type %>
@@ -47,16 +48,18 @@
       <ol class="list-group">
         <% i = 0 %>
         <% @question.answers.each do |answer|%>
-          <% i = i + 1 %>
           <li class="list-group-item">
-            <%= markdown.render("#{i}. By **#{answer.user.name}**: ").html_safe %>
+            <%= i = i + 1 %>
+            <%= markdown.render(" By **#{answer.user.name}**: ").html_safe %>
             <hr>
+            <h4>Answer</h4>
             <%= markdown.render(answer.content).html_safe %>
               <div>
                 <div class="text-right">
                   <button class="toggle-comment-option btn btn-outline-success">Toggle comments</button>
                 </div>
                 <div class="comments">
+                  <h4>Comments</h4>
                   <% answer.comments.each do |comment| %>
                   <div class="card bg-light">
                     <div class="card-header"><img src="<%= Gravatar.new("#{comment.user.email}").image_url %>" class="rounded-circle comment-photo" /> <%= comment.user.name %></div>
@@ -66,6 +69,7 @@
 
                   <% if signed_in? %>
                   <br>
+                  <h4>Comment this answer:</h4>
                   <%= form_for [@question, answer.comments.build] do |f| %>
                   <%= f.hidden_field :commentable_id %>
                   <%= f.hidden_field :commentable_type %>
