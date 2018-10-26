@@ -2,10 +2,15 @@ class AnswersController < ApplicationController
   before_action :private_access
 
   def create
-    question = Question.find(params[:question_id])
-    question.answers.create(answers_params)
+    @question = Question.find(params[:question_id])
+    @answer = @question.answers.new(answers_params)
+    if @answer.save
+      redirect_to @question
+    else
+      @error = "Answer can't be blank"
+      render 'questions/show'
+    end
 
-    redirect_to question
   end
 
   private

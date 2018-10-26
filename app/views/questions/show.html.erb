@@ -143,6 +143,17 @@
       <% if signed_in? %>
       <br>
       <div id="ans-box">
+
+
+        <% if @error %>
+          <div class="alert alert-danger">
+            <ul>
+              <li><%= @error %></li>
+            </ul>
+          </div>
+        <% end %>
+
+
         <h4>Enter your answer here ↓</h4>
         <%= form_for [@question, @question.answers.build] do |f| %>
         <div class="form-group">
