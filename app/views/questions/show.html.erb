@@ -23,6 +23,7 @@
     <div class="col-sm-9">
 
       <h1><%=@question.title%></h1>
+      <small>By:<%=@question.user.name%>. Published on: <%=@question.created_at%></small>
 
       <h4>Description:</h4>
       <div class="question-description">
@@ -91,7 +92,8 @@
                 </div>
                 <div class="col-sm-11">
                   <%= i = i + 1 %>
-                  <%= markdown.render(" By **#{answer.user.name}**: ").html_safe %>
+                  <%= markdown.render(" By: **#{answer.user.name}**: ").html_safe %>
+                  <small>Published on: <%=answer.created_at%></small>
                   <hr>
                   <h4>Answer</h4>
                   <%= markdown.render(answer.content).html_safe %>
