@@ -47,10 +47,15 @@ h4 {
       margin-left: 25px;
       display: inline;
       .btn {
+        margin-top: 7px;
+        margin-left: -4px;
+        margin-bottom: 3px;
         cursor: default;
       }
       .icon {
+        margin-top: 10px;
         margin-left: 25px;
+        padding: 0;
         text-decoration: none;
         border: none;
         background-color: inherit;
@@ -73,14 +78,15 @@ h4 {
     }
 
     .question-answers {
-      display: inline;
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
+      margin-left: 25px;
       .btn {
+        margin-top: 7px;
+        margin-bottom: 3px;
         cursor: default;
       }
       .icon {
+        margin-top: 10px;
+        padding: 0;
         font-size: 25px;
         cursor: default;
       }
